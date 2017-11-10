@@ -13,7 +13,7 @@
           p Thanks for taking the first steps towards becoming a <strong>Nonprofiter</strong>! We have a <a href="https://trello.com/b/Jopi5Zxg/development">ton of features</a> lined up for both our users and volunteers.
           blockquote.warning Please note that we're still in the early stages of development; there's not much you'll be able to do right now.
       .modal-footer
-        button.btn.btn-primary Twitter Sign In
+        button.btn.btn-primary(@click='twitterLogin' :class='{loading: isLoading}') Twitter Sign In
 </template>
 
 
@@ -22,14 +22,40 @@
 <!--############################# JavaScript ################################-->
 <!--#########################################################################-->
 <script>
+  import firebase from '@/service/firebase'
+
   export default {
     name: 'modal-login',
 
     props: ['isLoginModalActive'],
 
+    data () {
+      return {
+        isLoading: false
+      }
+    },
+
     methods: {
       closeModal () {
         this.$emit('toggleLogin')
+      },
+
+      twitterLogin () {
+        let provider = new firebase.auth.TwitterAuthProvider()
+        this.isLoading = true
+
+        firebase.auth().signInWithPopup(provider)
+          .then((result) => {
+            console.log(result)
+          })
+          // @TODO Let's toast the error message
+          .catch((err) => {
+            console.error(err)
+          })
+          .then(() => {
+            this.isLoading = false
+            this.$emit('toggleLogin')
+          })
       }
     }
   }
