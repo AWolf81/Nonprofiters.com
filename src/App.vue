@@ -12,7 +12,7 @@
               img#logo(src='static/img/favicon.png')
               | Nonprofiters
           .panel-nav.pt-2
-            button.btn.btn-primary(@click='toggleLogin') Login
+            button.btn.btn-primary(@click='toggleLogin') Sign In
         .panel-body
     .off-canvas-overlay(@click='toggleSidebar' test='App.vue:sidebar-overlay')
     main.off-canvas-content
