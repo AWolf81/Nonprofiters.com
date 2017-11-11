@@ -23,11 +23,10 @@
 <!--#########################################################################-->
 <script>
   import firebase from '@/service/firebase'
+  import {mapState} from 'vuex'
 
   export default {
     name: 'modal-login',
-
-    props: ['isLoginModalActive'],
 
     data () {
       return {
@@ -35,9 +34,13 @@
       }
     },
 
+    computed: mapState([
+      'isLoginModalActive'
+    ]),
+
     methods: {
       closeModal () {
-        this.$emit('toggleLogin')
+        this.$store.commit('toggleLoginModal')
       },
 
       twitterLogin () {

@@ -19,7 +19,7 @@
       router-view
 
     //- Modals
-    modal-login(:isLoginModalActive='isLoginModalActive' v-on:toggleLogin='toggleLogin')
+    modal-login(v-on:toggleLogin='toggleLogin')
 </template>
 
 
