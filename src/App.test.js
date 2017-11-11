@@ -1,14 +1,19 @@
-import {shallow} from 'vue-test-utils'
+import {shallow, createLocalVue} from 'vue-test-utils'
 import App from './App'
+import store from './store'
+
+const localVue = createLocalVue()
 
 describe('App.vue', () => {
-  test('can toggle sidebar', () => {
-    const wrapper = shallow(App)
+  const wrapper = shallow(App, {store, localVue})
 
-    wrapper.find('[test="App.vue:sidebar-toggle"]').trigger('click')
-    expect(wrapper.vm.isSidebarActive).toBeTruthy()
+  test('toggles sidebar', () => {
+    wrapper.find("[test='App.vue:sidebar-toggle']").trigger('click')
+    expect(store.state.isMainSidebarActive).toBeTruthy()
+  })
 
-    wrapper.find('[test="App.vue:sidebar-overlay"]').trigger('click')
-    expect(wrapper.vm.isSidebarActive).toBeFalsy()
+  test('toggles login', () => {
+    wrapper.find("[test='App.vue:sign-in']").trigger('click')
+    expect(store.state.isLoginModalActive).toBeTruthy()
   })
 })

@@ -4,7 +4,7 @@
       .navbar-section
         .off-canvas-toggle.btn.btn-link.btn-action(@click='toggleSidebar' test='App.vue:sidebar-toggle')
           .icon.icon-menu
-    .off-canvas-sidebar(:class='{active: isMainSidebarActive}')
+    .off-canvas-sidebar(:class='{active: isMainSidebarActive}' test='App.vue:sidebar-main')
       .panel.borderless
         .panel-header.text-center
           .panel-title.pb-2
@@ -18,12 +18,12 @@
               //- @TODO parse emojis in displayName
               p {{user.displayName}}
           .panel-nav.pt-2
-            button.btn.btn-primary(@click='toggleLogin' v-if='!user.uid') Sign In
+            button.btn.btn-primary(@click='toggleLogin' v-if='!user.uid' test='App.vue:sign-in') Sign In
         .panel-body
         .panel-footer.text-center(v-if='user.uid')
           button.btn.mr-1(@click='logout') Logout
           button.btn.btn-primary(@click='toggleProfile') Settings
-    .off-canvas-overlay(@click='toggleSidebar' test='App.vue:sidebar-overlay')
+    .off-canvas-overlay(@click='toggleSidebar')
     main.off-canvas-content
       router-view
 
@@ -64,7 +64,6 @@
         this.$store.commit('toggleLoginModal')
       },
       toggleProfile () {
-        console.log(this.$store)
         this.$store.commit('toggleProfileModal')
       },
       logout: () => (firebase.auth().signOut())
