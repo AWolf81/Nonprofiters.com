@@ -48,8 +48,10 @@
         this.isLoading = true
 
         firebase.auth().signInWithPopup(provider)
+          // @TODO Let's add a welcome message if result.additionalUserInfo.isNewUser
+          // @TODO We should make stay connected opt-in: https://firebase.google.com/docs/auth/web/auth-state-persistence
           .then((result) => {
-            console.log(result)
+            this.$store.commit('setUser', result.user)
           })
           // @TODO Let's toast the error message
           .catch((err) => {
@@ -57,7 +59,7 @@
           })
           .then(() => {
             this.isLoading = false
-            this.$emit('toggleLogin')
+            this.$store.commit('toggleLoginModal')
           })
       }
     }

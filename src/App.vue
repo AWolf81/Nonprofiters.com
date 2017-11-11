@@ -12,7 +12,8 @@
               img#logo(src='static/img/favicon.png')
               | Nonprofiters
           .panel-nav.pt-2
-            button.btn.btn-primary(@click='toggleLogin') Sign In
+            button.btn.btn-primary(@click='toggleLogin' v-if='!user.uid') Sign In
+            button.btn.btn-primary(@click='logout' v-else) Logout
         .panel-body
     .off-canvas-overlay(@click='toggleSidebar' test='App.vue:sidebar-overlay')
     main.off-canvas-content
@@ -30,6 +31,7 @@
 <script>
   import ModalLogin from '@/components/modal/Login'
   import {mapState} from 'vuex'
+  import firebase from '@/service/firebase'
 
   export default {
     name: 'app',
@@ -40,7 +42,8 @@
 
     computed: mapState([
       'isMainSidebarActive',
-      'isLoginModalActive'
+      'isLoginModalActive',
+      'user'
     ]),
 
     methods: {
@@ -49,6 +52,9 @@
       },
       toggleLogin () {
         this.$store.commit('toggleLoginModal')
+      },
+      logout () {
+        firebase.auth().signOut()
       }
     }
   }
