@@ -4,7 +4,7 @@
       .navbar-section
         .off-canvas-toggle.btn.btn-link.btn-action(@click='toggleSidebar' test='App.vue:sidebar-toggle')
           .icon.icon-menu
-    .off-canvas-sidebar(:class='{active: isSidebarActive}')
+    .off-canvas-sidebar(:class='{active: isMainSidebarActive}')
       .panel.borderless
         .panel-header.text-center
           .panel-title.pb-2
@@ -29,6 +29,7 @@
 <!--#########################################################################-->
 <script>
   import ModalLogin from '@/components/modal/Login'
+  import {mapState} from 'vuex'
 
   export default {
     name: 'app',
@@ -37,14 +38,10 @@
       ModalLogin
     },
 
-    computed: {
-      isSidebarActive () {
-        return this.$store.state.isMainSidebarActive
-      },
-      isLoginModalActive () {
-        return this.$store.state.isLoginModalActive
-      }
-    },
+    computed: mapState([
+      'isMainSidebarActive',
+      'isLoginModalActive'
+    ]),
 
     methods: {
       toggleSidebar () {
