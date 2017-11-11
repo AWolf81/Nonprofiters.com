@@ -11,10 +11,17 @@
             a(href="/")
               img#logo(src='static/img/favicon.png')
               | Nonprofiters
+            p
+              figure.avatar.avatar-xl
+                img(:src='user.photoURL' :alt='user.displayName')
+            //- @TODO parse emojis in displayName
+            p {{user.displayName}}
           .panel-nav.pt-2
             button.btn.btn-primary(@click='toggleLogin' v-if='!user.uid') Sign In
-            button.btn.btn-primary(@click='logout' v-else) Logout
         .panel-body
+        .panel-footer.text-center(v-if='user.uid')
+          button.btn.mr-1(@click='logout') Logout
+          button.btn.btn-primary(@click='toggleProfile') Settings
     .off-canvas-overlay(@click='toggleSidebar' test='App.vue:sidebar-overlay')
     main.off-canvas-content
       router-view
@@ -53,9 +60,10 @@
       toggleLogin () {
         this.$store.commit('toggleLoginModal')
       },
-      logout () {
-        firebase.auth().signOut()
-      }
+      toggleProfile () {
+        this.$store.commit('toggleProfileModal')
+      },
+      logout: () => (firebase.auth().signOut())
     }
   }
 </script>

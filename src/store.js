@@ -6,6 +6,7 @@ export default new Vuex.Store({
   state: {
     isMainSidebarActive: false,
     isLoginModalActive: false,
+    toggleProfileModal: false,
 
     user: {}
   },
@@ -13,6 +14,7 @@ export default new Vuex.Store({
   mutations: {
     toggleMainSidebar: state => (state.isMainSidebarActive = !state.isMainSidebarActive),
     toggleLoginModal: state => (state.isLoginModalActive = !state.isLoginModalActive),
+    toggleProfileModal: state => (state.toggleProfileModal = !state.toggleProfileModal)
 
     setUser: (state, user) => (state.user = user)
   }
