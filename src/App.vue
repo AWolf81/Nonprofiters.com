@@ -37,22 +37,21 @@
       ModalLogin
     },
 
-    data () {
-      return {
-        isSidebarActive: false,
-        isLoginModalActive: false,
-        tools: [
-          {label: 'About'}
-        ]
+    computed: {
+      isSidebarActive () {
+        return this.$store.state.isMainSidebarActive
+      },
+      isLoginModalActive () {
+        return this.$store.state.isLoginModalActive
       }
     },
 
     methods: {
       toggleSidebar () {
-        this.isSidebarActive = !this.isSidebarActive
+        this.$store.commit('toggleMainSidebar')
       },
       toggleLogin () {
-        this.isLoginModalActive = !this.isLoginModalActive
+        this.$store.commit('toggleLoginModal')
       }
     }
   }
