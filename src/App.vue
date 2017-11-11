@@ -11,11 +11,12 @@
             a(href="/")
               img#logo(src='static/img/favicon.png')
               | Nonprofiters
-            p
-              figure.avatar.avatar-xl
-                img(:src='user.photoURL' :alt='user.displayName')
-            //- @TODO parse emojis in displayName
-            p {{user.displayName}}
+            div(v-if='user.uid')
+              p
+                figure.avatar.avatar-xl
+                  img(:src='user.photoURL' :alt='user.displayName')
+              //- @TODO parse emojis in displayName
+              p {{user.displayName}}
           .panel-nav.pt-2
             button.btn.btn-primary(@click='toggleLogin' v-if='!user.uid') Sign In
         .panel-body
@@ -27,7 +28,8 @@
       router-view
 
     //- Modals
-    modal-login(v-on:toggleLogin='toggleLogin')
+    modal-login
+    modal-profile
 </template>
 
 
@@ -37,6 +39,7 @@
 <!--#########################################################################-->
 <script>
   import ModalLogin from '@/components/modal/Login'
+  import ModalProfile from '@/components/modal/Profile'
   import {mapState} from 'vuex'
   import firebase from '@/service/firebase'
 
@@ -44,7 +47,8 @@
     name: 'app',
 
     components: {
-      ModalLogin
+      ModalLogin,
+      ModalProfile
     },
 
     computed: mapState([
@@ -61,6 +65,7 @@
         this.$store.commit('toggleLoginModal')
       },
       toggleProfile () {
+        console.log(this.$store)
         this.$store.commit('toggleProfileModal')
       },
       logout: () => (firebase.auth().signOut())
