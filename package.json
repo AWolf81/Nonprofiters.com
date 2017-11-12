@@ -27,13 +27,15 @@
     "mapCoverage": true
   },
   "dependencies": {
+    "firebase": "^4.6.2",
     "node-sass": "^4.6.0",
     "pug": "^2.0.0-rc.4",
     "pug-loader": "^2.3.0",
     "sass-loader": "^6.0.6",
     "spectre.css": "^0.4.5",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
