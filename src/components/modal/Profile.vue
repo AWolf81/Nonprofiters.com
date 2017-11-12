@@ -8,7 +8,7 @@
       .modal-body
         blockquote.info To change your account information, please update it on <a href="https://twitter.com/settings/account">Twitter</a> and reload this page.
       .modal-footer
-        button.btn.btn-error(@click='deleteAccount' :class='{loading: isLoading}') Delete Account
+        button.btn.btn-error(@click='deleteAccount' :class='{loading: isLoading}' test='modal/Profile:delete-user') Delete Account
 </template>
 
 
@@ -36,7 +36,6 @@
         this.$store.commit('toggleProfileModal')
       },
       deleteAccount () {
-        this.isLoading = true
         this.$store.commit('deleteUser')
       }
     }
