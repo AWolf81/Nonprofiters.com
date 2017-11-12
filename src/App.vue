@@ -19,8 +19,11 @@
               p {{user.displayName}}
         .panel-body
         .panel-footer.text-center(v-if='user.uid')
-          button.btn.mr-1(@click='logout' test='App.vue:logout') Logout
-          button.btn.btn-primary(@click='toggleProfile') Settings
+          p.btn-group.btn-group-block
+            button.btn.btn-primary(@click='toggleResource') Add Resource
+          p.btn-group.btn-group-block
+            button.btn(@click='logout' test='App.vue:logout') Logout
+            button.btn.btn-primary(@click='toggleProfile') Settings
         .panel-footer.text-center(v-if='!user.uid')
           button.btn.btn-primary(@click='toggleLogin' test='App.vue:sign-in') Sign In
     .off-canvas-overlay(@click='toggleSidebar')
@@ -31,6 +34,7 @@
     //- Modals
     modal-login(v-if="!user.uid")
     modal-profile(v-if="user.uid")
+    modal-add-resource(v-if="user.uid")
 </template>
 
 
@@ -40,6 +44,7 @@
 <script>
   import ModalLogin from '@/components/modal/Login'
   import ModalProfile from '@/components/modal/Profile'
+  import ModalAddResource from '@/components/modal/resource/Add'
   import MapMain from '@/components/map/Main'
   import {mapState} from 'vuex'
 
@@ -49,6 +54,7 @@
     components: {
       ModalLogin,
       ModalProfile,
+      ModalAddResource,
       MapMain
     },
 
@@ -67,6 +73,9 @@
       },
       toggleProfile () {
         this.$store.commit('toggleProfileModal')
+      },
+      toggleResource () {
+        this.$store.commit('toggleAddResourceModal')
       },
       logout () {
         this.$store.commit('logout')

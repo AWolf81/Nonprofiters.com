@@ -8,6 +8,7 @@ export default new Vuex.Store({
     isMainSidebarActive: false,
     isLoginModalActive: false,
     isProfileModalActive: false,
+    isAddResourceModalActive: false,
 
     user: {}
   },
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     toggleMainSidebar: state => (state.isMainSidebarActive = !state.isMainSidebarActive),
     toggleLoginModal: state => (state.isLoginModalActive = !state.isLoginModalActive),
     toggleProfileModal: state => (state.isProfileModalActive = !state.isProfileModalActive),
+    toggleAddResourceModal: state => (state.isAddResourceModalActive = !state.isAddResourceModalActive),
 
     setUser: (state, user) => (state.user = user),
     // @TODO Toast success
