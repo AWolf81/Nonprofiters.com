@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import firebase from '@/service/firebase'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -19,9 +20,13 @@ export default new Vuex.Store({
     setUser: (state, user) => (state.user = user),
     // @TODO Toast success
     // @TODO Catche error
-    deleteUser: (state) => {
+    deleteUser (state) {
       state.user.delete()
       state.user = {}
+    },
+    logout (state) {
+      state.user = {}
+      firebase.auth().signOut()
     }
   }
 })

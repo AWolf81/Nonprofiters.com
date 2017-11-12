@@ -1,5 +1,5 @@
-import {shallow, createLocalVue} from 'vue-test-utils'
 import Vue from 'vue'
+import {shallow, createLocalVue} from 'vue-test-utils'
 import Profile from '@/components/modal/Profile'
 import store from '@/store'
 

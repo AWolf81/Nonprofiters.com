@@ -21,7 +21,7 @@
             button.btn.btn-primary(@click='toggleLogin' v-if='!user.uid' test='App.vue:sign-in') Sign In
         .panel-body
         .panel-footer.text-center(v-if='user.uid')
-          button.btn.mr-1(@click='logout' test="App.vue:logout") Logout
+          button.btn.mr-1(@click='logout' test='App.vue:logout') Logout
           button.btn.btn-primary(@click='toggleProfile') Settings
     .off-canvas-overlay(@click='toggleSidebar')
     main.off-canvas-content
@@ -40,7 +40,6 @@
   import ModalLogin from '@/components/modal/Login'
   import ModalProfile from '@/components/modal/Profile'
   import {mapState} from 'vuex'
-  import firebase from '@/service/firebase'
 
   export default {
     name: 'app',
@@ -66,7 +65,9 @@
       toggleProfile () {
         this.$store.commit('toggleProfileModal')
       },
-      logout: () => (firebase.auth().signOut())
+      logout () {
+        this.$store.commit('logout')
+      }
     }
   }
 </script>
