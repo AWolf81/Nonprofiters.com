@@ -21,7 +21,7 @@
             button.btn.btn-primary(@click='toggleLogin' v-if='!user.uid' test='App.vue:sign-in') Sign In
         .panel-body
         .panel-footer.text-center(v-if='user.uid')
-          button.btn.mr-1(@click='logout') Logout
+          button.btn.mr-1(@click='logout' test="App.vue:logout") Logout
           button.btn.btn-primary(@click='toggleProfile') Settings
     .off-canvas-overlay(@click='toggleSidebar')
     main.off-canvas-content

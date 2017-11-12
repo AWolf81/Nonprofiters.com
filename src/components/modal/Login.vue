@@ -1,5 +1,5 @@
 <template lang="pug">
-  .modal(:class='{active: isLoginModalActive}' test='components/modal/Login:modal')
+  .modal(:class='{active: isLoginModalActive}')
     .modal-overlay(@click='closeModal')
     .modal-container
       .modal-header
