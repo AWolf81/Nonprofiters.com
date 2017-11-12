@@ -17,15 +17,16 @@
                   img(:src='user.photoURL' :alt='user.displayName')
               //- @TODO parse emojis in displayName
               p {{user.displayName}}
-          .panel-nav.pt-2
-            button.btn.btn-primary(@click='toggleLogin' v-if='!user.uid' test='App.vue:sign-in') Sign In
         .panel-body
         .panel-footer.text-center(v-if='user.uid')
           button.btn.mr-1(@click='logout' test='App.vue:logout') Logout
           button.btn.btn-primary(@click='toggleProfile') Settings
+        .panel-footer.text-center(v-if='!user.uid')
+          button.btn.btn-primary(@click='toggleLogin' test='App.vue:sign-in') Sign In
     .off-canvas-overlay(@click='toggleSidebar')
     main.off-canvas-content
-      router-view
+      //- router-view
+      map-main
 
     //- Modals
     modal-login(v-if="!user.uid")
@@ -39,6 +40,7 @@
 <script>
   import ModalLogin from '@/components/modal/Login'
   import ModalProfile from '@/components/modal/Profile'
+  import MapMain from '@/components/map/Main'
   import {mapState} from 'vuex'
 
   export default {
@@ -46,7 +48,8 @@
 
     components: {
       ModalLogin,
-      ModalProfile
+      ModalProfile,
+      MapMain
     },
 
     computed: mapState([
@@ -85,4 +88,7 @@
     width: 32px
     position: relative
     top: 0px
+
+  main
+    padding: 0 !important
 </style>
