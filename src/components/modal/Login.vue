@@ -49,7 +49,7 @@
           .then((result) => {
             this.$store.commit('setUser', result.user)
           })
-          // @TODO Let's toast the error message
+          // @TODO Let's toast the error message (test by turning off connection or temp disabling authorized domains)
           .catch((err) => {
             console.error(err)
           })

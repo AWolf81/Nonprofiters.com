@@ -19,6 +19,9 @@ export default new Vuex.Store({
     setUser: (state, user) => (state.user = user),
     // @TODO Toast success
     // @TODO Catche error
-    deleteUser: (state) => (state.user.delete())
+    deleteUser: (state) => {
+      state.user.delete()
+      state.user = {}
+    }
   }
 })

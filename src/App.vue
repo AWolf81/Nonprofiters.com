@@ -28,8 +28,8 @@
       router-view
 
     //- Modals
-    modal-login
-    modal-profile
+    modal-login(v-if="!user.uid")
+    modal-profile(v-if="user.uid")
 </template>
 
 
