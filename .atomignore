@@ -1,0 +1,21 @@
+# Definitely ignore
+node_modules/
+build/
+config/
+dist/
+
+# Configs
+.babelrc
+.editorconfig
+.eslintignore
+.eslintrc.js
+.firebaserc
+.postcssrc.js
+yarn.lock
+firebase.json
+
+# Test
+*.test.js
+
+# Binaries
+static
