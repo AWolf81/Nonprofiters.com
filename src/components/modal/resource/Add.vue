@@ -11,18 +11,24 @@
             .col-3
               label.form-label(for='modal/resource/Add:title') Title
             .col-9
-              input.form-input(id='modal/resource/Add:title' type='text' placeholder='Resource Title')
+              input.form-input(id='modal/resource/Add:title' type='text' placeholder='Resource Title' v-model='data.title')
           .form-group
             .col-3
               label.form-label(for='modal/resource/Add:address') Address
             .col-9
-              input.form-input(id='modal/resource/Add:address' type='text' placeholder='Resource Address')
+              input.form-input(id='modal/resource/Add:address' type='text' placeholder='Resource Address' v-model='data.address')
+          .form-group
+            .col-3
+              label.form-label(for='modal/resource/Add:categories') Categories
+            .col-9
+              select.form-select(id='modal/resource/Add:categories' v-model='data.categories')
+                option(value='restroom') Public Restroom
           .form-group
             .col-12
               label.form-label(for='modal/resource/Add:notes') Notes
-              textarea.form-input(id='modal/resource/Add:notes' placeholder='Resource Notes (location details, hours, restrictions, etc)' rows=5)
+              textarea.form-input(id='modal/resource/Add:notes' placeholder='Resource Notes (location details, hours, restrictions, etc)' rows=5 v-model='data.notes')
       .modal-footer
-        button.btn.btn-primary(:class='{loading: isLoading}') Add Resource
+        button.btn.btn-primary(:class='{loading: isLoading}' @click='submit') Add Resource
 </template>
 
 
@@ -30,24 +36,42 @@
 
 
 <script>
-  import {mapState} from 'vuex'
-
   export default {
     name: 'modal-add-resource',
 
     data () {
       return {
-        isLoading: false
+        isLoading: false,
+        data: {
+          title: '',
+          address: '',
+          categories: 'restroom',
+          notes: ''
+        }
       }
     },
 
-    computed: mapState([
-      'isAddResourceModalActive'
-    ]),
+    computed: {
+      isAddResourceModalActive () {
+        let state = this.$store.state.isAddResourceModalActive
+
+        if (state) {
+          this.$nextTick(() => {
+            this.$el.querySelector('#modal\\/resource\\/Add\\:title').focus()
+          })
+        }
+
+        return state
+      }
+    },
 
     methods: {
       closeModal () {
         this.$store.commit('toggleAddResourceModal')
+      },
+
+      submit () {
+        console.log(this.data)
       }
     }
   }
