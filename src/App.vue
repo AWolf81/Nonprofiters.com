@@ -1,6 +1,6 @@
 <template lang="pug">
   #app.off-canvas
-    header.navbar
+    header.navbar(v-shortkey.once='["esc"]' @shortkey='closeModals()')
       .navbar-section
         .off-canvas-toggle.btn.btn-link.btn-action(@click='toggleSidebar' test='App.vue:sidebar-toggle')
           .icon.icon-menu
@@ -20,7 +20,7 @@
         .panel-body
         .panel-footer.text-center(v-if='user.uid')
           p.btn-group.btn-group-block
-            button.btn.btn-primary(@click='toggleResource') Add Resource
+            button.btn.btn-primary(@click='toggleResource' v-shortkey.once='["a"]' @shortkey='toggleResource()') Add Resource
           p.btn-group.btn-group-block
             button.btn(@click='logout' test='App.vue:logout') Logout
             button.btn.btn-primary(@click='toggleProfile') Settings
@@ -79,6 +79,9 @@
       },
       logout () {
         this.$store.commit('logout')
+      },
+      closeModals () {
+        this.$store.commit('closeModals')
       }
     }
   }

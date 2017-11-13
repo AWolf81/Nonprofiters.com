@@ -3,8 +3,10 @@ import App from './App'
 import router from './router'
 import store from './store'
 import firebase from './service/firebase'
+import VueShortkey from 'vue-shortkey'
 
 Vue.config.productionTip = false
+Vue.use(VueShortkey, {prevent: ['input', 'textarea']})
 
 /* eslint-disable no-new */
 new Vue({

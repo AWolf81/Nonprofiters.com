@@ -18,6 +18,12 @@ export default new Vuex.Store({
     toggleLoginModal: state => (state.isLoginModalActive = !state.isLoginModalActive),
     toggleProfileModal: state => (state.isProfileModalActive = !state.isProfileModalActive),
     toggleAddResourceModal: state => (state.isAddResourceModalActive = !state.isAddResourceModalActive),
+    closeModals (state) {
+      state.isMainSidebarActive = false
+      state.isLoginModalActive = false
+      state.isProfileModalActive = false
+      state.isAddResourceModalActive = false
+    },
 
     setUser: (state, user) => (state.user = user),
     // @TODO Toast success
