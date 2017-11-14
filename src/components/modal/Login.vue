@@ -3,7 +3,7 @@
     .modal-overlay(@click='closeModal')
     .modal-container
       .modal-header
-        button.btn.btn-clear.float-right(@click='closeModal')
+        button.btn.btn-clear.float-right(@click='closeModal' test='modal/Login:close-modal')
         .modal-title.h5 Sign In / Register
       .modal-body
         .content

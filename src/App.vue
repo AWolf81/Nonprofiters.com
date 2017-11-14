@@ -39,7 +39,7 @@
 <script>
   import ModalLogin from '@/components/modal/Login'
   import ModalProfile from '@/components/modal/Profile'
-  import {mapState} from 'vuex'
+  import {mapState, mapMutations} from 'vuex'
 
   export default {
     name: 'app',
@@ -56,18 +56,14 @@
     ]),
 
     methods: {
-      toggleSidebar () {
-        this.$store.commit('toggleMainSidebar')
-      },
-      toggleLogin () {
-        this.$store.commit('toggleLoginModal')
-      },
-      toggleProfile () {
-        this.$store.commit('toggleProfileModal')
-      },
-      logout () {
-        this.$store.commit('logout')
-      }
+      ...mapMutations({
+        // ui actions
+        toggleSidebar: 'toggleMainSidebar',
+        toggleLogin: 'toggleLoginModal',
+        toggleProfile: 'toggleProfileModal',
+        // auth actions
+        logout: 'logout'
+      })
     }
   }
 </script>

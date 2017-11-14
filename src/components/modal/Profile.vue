@@ -3,7 +3,7 @@
     .modal-overlay(@click='closeModal')
     .modal-container
       .modal-header
-        button.btn.btn-clear.float-right(@click='closeModal')
+        button.btn.btn-clear.float-right(@click='closeModal' test='modal/Profile:close-modal')
         .modal-title.h5 Profile
       .modal-body
         blockquote.info To change your account information, please update it on <a href="https://twitter.com/settings/account">Twitter</a> and reload this page.
