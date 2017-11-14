@@ -33,6 +33,7 @@
     "pug-loader": "^2.3.0",
     "sass-loader": "^6.0.6",
     "spectre.css": "^0.4.5",
+    "vee-validate": "^2.0.0-rc.21",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vue-shortkey": "^3.0.2",

@@ -3,10 +3,12 @@ import App from './App'
 import router from './router'
 import store from './store'
 import firebase from './service/firebase'
-import VueShortkey from 'vue-shortkey'
 
 Vue.config.productionTip = false
-Vue.use(VueShortkey, {prevent: ['input', 'textarea']})
+Vue.use(require('vue-shortkey'), {
+  prevent: ['input', 'textarea']
+})
+Vue.use(require('vee-validate'))
 
 /* eslint-disable no-new */
 new Vue({

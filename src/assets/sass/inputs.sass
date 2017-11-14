@@ -1,0 +1,9 @@
+.form-input-error-message
+  display: none
+
+.form-input[aria-invalid="true"]
+  @extend .form-input.is-error
+
+  ~ .form-input-error-message
+    display: block
+    color: $error-color

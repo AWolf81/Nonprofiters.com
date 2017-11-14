@@ -1,0 +1,13 @@
+.btn-error, .btn-error.loading
+  background: $error-color
+  border-color: darken($error-color, 5%)
+  color: #fff
+
+  &:hover, &:active
+    background: lighten($error-color, 30%)
+    border-color: $error-color
+
+  &:after
+    border: 0.1rem solid #fff !important
+    border-right-color: transparent !important
+    border-top-color: transparent !important
